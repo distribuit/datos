@@ -3,12 +3,12 @@ package com.distribuit.datos.compression
 import java.io.{ InputStream, OutputStream }
 import java.util.zip.{ ZipInputStream, ZipOutputStream }
 
+import com.datos.vfs.FileObject
 import org.apache.commons.compress.compressors.bzip2.{ BZip2CompressorInputStream, _ }
 import org.apache.commons.compress.compressors.deflate._
 import org.apache.commons.compress.compressors.gzip._
 import org.apache.commons.compress.compressors.pack200._
 import org.apache.commons.compress.compressors.xz._
-import org.apache.commons.vfs2.FileObject
 
 /**
  * Copyright (c) 2016 Distribuit Inc.

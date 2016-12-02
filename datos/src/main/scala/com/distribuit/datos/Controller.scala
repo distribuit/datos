@@ -23,7 +23,7 @@ object Controller extends App {
   implicit val executor = actorSystem.dispatcher
   //  val logger = Logging(actorSystem, this)
   private val logger = Logger(LoggerFactory.getLogger("Controller"))
-  val bindingFuture = Http().bindAndHandle(null, DatosSettings.config.getString("http.interface"), DatosSettings.config.getInt("http.port"))
+  //  val bindingFuture = Http().bindAndHandle(null, DatosSettings.config.getString("http.interface"), DatosSettings.config.getInt("http.port"))
   val schemaString: String = Source.fromFile("settings/Workers.json").mkString
   val schema: JsValue = Json.parse(schemaString)
   val groups: Map[String, List[JsValue]] = schema.as[Map[String, List[JsValue]]]

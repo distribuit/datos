@@ -1,8 +1,8 @@
 package com.distribuit.datos.models
 
-import com.distribuit.datos.compression.Compression.Compression
-import com.distribuit.datos.common.OnCompletion
 import com.datos.vfs.FileObject
+import com.distribuit.datos.common.OnCompletion
+import com.distribuit.datos.compression.Compression.Compression
 
 /**
  * Copyright (c) 2016 Distribuit Inc.

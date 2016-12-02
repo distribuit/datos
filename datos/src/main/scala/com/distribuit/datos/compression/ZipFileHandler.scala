@@ -3,11 +3,11 @@ package com.distribuit.datos.compression
 import java.io.OutputStream
 import java.util.zip.{ ZipEntry, ZipInputStream }
 
-import com.typesafe.scalalogging.Logger
+import com.datos.vfs.FileObject
 import com.distribuit.datos.compression.Compression.Compression
 import com.distribuit.datos.helper.DatosHelper
 import com.distribuit.datos.models.Modtager
-import com.datos.vfs.FileObject
+import com.typesafe.scalalogging.Logger
 import org.slf4j.LoggerFactory
 
 import scala.collection.mutable

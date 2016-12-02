@@ -1,7 +1,6 @@
 package com.distribuit.datos
 
 import akka.actor.{ ActorRef, ActorSystem, Props }
-import akka.http.scaladsl.Http
 import akka.stream.ActorMaterializer
 import com.distribuit.datos.common._
 import com.typesafe.scalalogging.Logger
@@ -32,7 +31,7 @@ object Controller extends App {
       Try(Worker.createWorkerSchema(schemaJson)) match {
         case Success(schema) => Some(schema)
         case Failure(errorMessage) =>
-          logger.error(s"event:schema error encounter--message:Failed to parse group definition $schemaJson")
+          logger.error(s"event:schema error encounter--message:Failed to parse group definition $schemaJson", errorMessage)
           None
       }).toBuffer
     toBuffer
@@ -40,6 +39,7 @@ object Controller extends App {
   groupDefinitionOpt.values.flatten.exists(_.isEmpty) match {
     case true =>
       logger.error("event:schema error--message:Failed to parse default worker schema, exiting")
+      print("Exit")
       sys.exit()
     case false =>
       val groupDefinition: Map[String, mutable.Buffer[WorkerSchema]] = groupDefinitionOpt.mapValues(options => options.map(_.get))

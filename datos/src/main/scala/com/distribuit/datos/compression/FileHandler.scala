@@ -1,7 +1,7 @@
 package com.distribuit.datos.compression
 
-import com.distribuit.datos.models.Modtager
 import com.datos.vfs.FileObject
+import com.distribuit.datos.models.Modtager
 
 /**
  * Copyright (c) 2016 Distribuit Inc.

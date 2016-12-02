@@ -23,26 +23,37 @@ object Controller extends App {
   //  val logger = Logging(actorSystem, this)
   private val logger = Logger(LoggerFactory.getLogger("Controller"))
   //  val bindingFuture = Http().bindAndHandle(null, DatosSettings.config.getString("http.interface"), DatosSettings.config.getInt("http.port"))
-  val schemaString: String = Source.fromFile("settings/Workers.json").mkString
-  val schema: JsValue = Json.parse(schemaString)
-  val groups: Map[String, List[JsValue]] = schema.as[Map[String, List[JsValue]]]
-  val groupDefinitionOpt: Map[String, mutable.Buffer[Option[WorkerSchema]]] = groups.mapValues(workers => {
-    val toBuffer: mutable.Buffer[Option[WorkerSchema]] = workers.map(schemaJson =>
-      Try(Worker.createWorkerSchema(schemaJson)) match {
-        case Success(schema) => Some(schema)
-        case Failure(errorMessage) =>
-          logger.error(s"event:schema error encounter--message:Failed to parse group definition $schemaJson", errorMessage)
-          None
-      }).toBuffer
-    toBuffer
-  })
-  groupDefinitionOpt.values.flatten.exists(_.isEmpty) match {
-    case true =>
-      logger.error("event:schema error--message:Failed to parse default worker schema, exiting")
-      print("Exit")
-      sys.exit()
-    case false =>
-      val groupDefinition: Map[String, mutable.Buffer[WorkerSchema]] = groupDefinitionOpt.mapValues(options => options.map(_.get))
-      val datosGuardian: ActorRef = actorSystem.actorOf(Props(new DatosGuardian(groupDefinition)), "DatosGuardian")
+
+  Try(extractGroupDefinition) match {
+    case Success(groupDefinitionOpt) =>
+      groupDefinitionOpt.values.flatten.exists(_.isEmpty) match {
+        case true =>
+          logger.error("event:schema error--message:Failed to parse default worker schema, exiting")
+          print("Exit")
+        case false =>
+          val groupDefinition: Map[String, mutable.Buffer[WorkerSchema]] = groupDefinitionOpt.mapValues(options => options.map(_.get))
+          val datosGuardian: ActorRef = actorSystem.actorOf(Props(new DatosGuardian(groupDefinition)), "DatosGuardian")
+      }
+    case Failure(errorMessage) =>
+      logger.error("event:schema error--msg: Failed to parse Worker.json", errorMessage)
+  }
+
+  def extractGroupDefinition: Map[String, mutable.Buffer[Option[WorkerSchema]]] = {
+
+    val schemaString: String = Source.fromFile("settings/Workers.json").mkString
+    val schema: JsValue = Json.parse(schemaString)
+    val groups: Map[String, List[JsValue]] = schema.as[Map[String, List[JsValue]]]
+    groups.mapValues(workers => {
+      val toBuffer: mutable.Buffer[Option[WorkerSchema]] = workers.map(schemaJson =>
+        Try(Worker.createWorkerSchema(schemaJson)) match {
+          case Success(schema) => Some(schema)
+          case Failure(errorMessage) =>
+            println(s"Cannot parse $schemaJson")
+            logger.error(s"event:schema error encounter--message:Failed to parse group definition $schemaJson", errorMessage)
+            None
+        }).toBuffer
+      toBuffer
+    })
+
   }
 }

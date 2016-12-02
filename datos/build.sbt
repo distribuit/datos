@@ -51,3 +51,4 @@ assemblyMergeStrategy in assembly := {
 }
 
 unmanagedResources in Compile += file(".") / "conf" / "log4j.properties"
+unmanagedResources in Compile += file(".") / "conf" / "logback.xml"

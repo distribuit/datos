@@ -1,0 +1,74 @@
+{
+  "group1": [
+    {
+      "worker": "SampleName1",
+      "input": {
+        "path": "/home/paulson/distribuit/data/sample",
+        "compress": true,
+        "compression": "ZIP"
+      },
+      "output": [
+        {
+          "path": "hdfs://localhost:9000/paulson/csv/sample",
+          "compress": false
+        }
+      ],
+      "matches": [
+        ".*"
+      ],
+      "not_matches": [
+      ],
+      "onCompletion": {
+        "delete": false,
+        "movePath": "/home/paulson/distribuit/data/backup"
+      }
+    }
+  ],
+  "group2": [
+    {
+      "worker": "SampleName2",
+      "input": {
+        "path": "/home/paulson/distribuit/data/sample",
+        "compress": true,
+        "compression": "GZIP"
+      },
+      "output": [
+        {
+          "path": "hdfs://localhost:9000/paulson/csv/sample",
+          "compress": false
+        }
+      ],
+      "matches": [
+        ".*"
+      ],
+      "not_matches": [
+      ],
+      "onCompletion": {
+        "delete": false,
+        "movePath": "/home/paulson/distribuit/data/backup"
+      }
+    },
+    {
+      "worker": "Sample2",
+      "input": {
+        "path": "/home/paulson/distribuit/data/sample",
+        "compress": false
+      },
+      "output": [
+        {
+          "path": "hdfs://localhost:9000/paulson/csv/sample",
+          "compress": false
+        }
+      ],
+      "matches": [
+        ".*"
+      ],
+      "not_matches": [
+      ],
+      "onCompletion": {
+        "delete": false,
+        "movePath": "/home/paulson/distribuit/data/backup"
+      }
+    }
+  ]
+}

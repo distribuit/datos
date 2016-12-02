@@ -7,7 +7,7 @@ import com.distribuit.datos.compression.Compression
 import com.distribuit.datos.compression.Compression.Compression
 import com.distribuit.datos.models.Modtager
 import com.typesafe.scalalogging.Logger
-import org.apache.commons.vfs2.FileObject
+import com.datos.vfs.FileObject
 import org.slf4j.LoggerFactory
 
 import scala.util.{ Failure, Success, Try }

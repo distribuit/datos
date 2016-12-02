@@ -7,7 +7,7 @@ import com.typesafe.scalalogging.Logger
 import com.distribuit.datos.compression.Compression.Compression
 import com.distribuit.datos.helper.DatosHelper
 import com.distribuit.datos.models.Modtager
-import org.apache.commons.vfs2.FileObject
+import com.datos.vfs.FileObject
 import org.slf4j.LoggerFactory
 
 import scala.collection.mutable

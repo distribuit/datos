@@ -10,9 +10,12 @@ scalaVersion := "2.11.0"
 libraryDependencies ++= Seq(
   "com.typesafe" % "config" % "1.3.0",
   "com.typesafe.scala-logging" % "scala-logging_2.11" % "3.1.0",
+  "org.slf4j" % "slf4j-log4j12" % "1.7.2",
+  "org.slf4j" % "slf4j-api" % "1.7.2",
+  "org.slf4j" % "jcl-over-slf4j" % "1.7.2",
   "org.apache.hadoop" % "hadoop-client" % "2.6.0",
   "org.apache.commons" % "commons-compress" % "1.12",
-  "org.apache.commons" % "commons-vfs2" % "2.1",
+  "com.datos" % "vfs" % "1.0",
   "com.github.scala-incubator.io" % "scala-io-file_2.11" % "0.4.3",
   "com.typesafe.akka" %% "akka-actor" % "2.4.14",
   "com.typesafe.akka" %% "akka-cluster" % "2.4.14",

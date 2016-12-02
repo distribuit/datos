@@ -1,7 +1,7 @@
 package com.distribuit.datos.common
 
 import com.typesafe.config.{ Config, ConfigFactory }
-import org.apache.commons.vfs2.{ FileSystemManager, VFS }
+import com.datos.vfs.{ FileSystemManager, VFS }
 
 import scala.io.Source
 

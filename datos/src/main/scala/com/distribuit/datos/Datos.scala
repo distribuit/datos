@@ -4,7 +4,7 @@ import akka.actor.Actor
 import com.distribuit.datos.helper.DatosHelper
 import com.typesafe.scalalogging.Logger
 import com.distribuit.datos.models.{ Failure, DatosRequest, Success }
-import org.apache.commons.vfs2.FileObject
+import com.datos.vfs.FileObject
 import org.slf4j.LoggerFactory
 
 import scala.util.Try

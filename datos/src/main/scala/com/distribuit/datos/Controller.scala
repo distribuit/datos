@@ -1,10 +1,11 @@
 package com.distribuit.datos
 
 import akka.actor.{ ActorRef, ActorSystem, Props }
-import akka.event.Logging
 import akka.http.scaladsl.Http
 import akka.stream.ActorMaterializer
 import com.distribuit.datos.common._
+import com.typesafe.scalalogging.Logger
+import org.slf4j.LoggerFactory
 import play.api.libs.json.{ JsValue, Json }
 
 import scala.collection.mutable
@@ -20,7 +21,8 @@ object Controller extends App {
   implicit val actorSystem: ActorSystem = ActorSystem("DatosSystem", DatosSettings.config)
   implicit val materializer = ActorMaterializer()
   implicit val executor = actorSystem.dispatcher
-  val logger = Logging(actorSystem, this)
+  //  val logger = Logging(actorSystem, this)
+  private val logger = Logger(LoggerFactory.getLogger("Controller"))
   val bindingFuture = Http().bindAndHandle(null, DatosSettings.config.getString("http.interface"), DatosSettings.config.getInt("http.port"))
   val schemaString: String = Source.fromFile("settings/Workers.json").mkString
   val schema: JsValue = Json.parse(schemaString)

@@ -1,0 +1,4 @@
+source conf/environment.sh
+
+
+java  $JVM_OPTS -cp $ASSEMBLY_JAR_PATH com.distribuit.datos.Controller

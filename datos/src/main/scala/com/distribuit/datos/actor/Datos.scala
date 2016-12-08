@@ -1,9 +1,9 @@
-package com.distribuit.datos
+package com.distribuit.datos.actor
 
 import akka.actor.{ Actor, ActorLogging }
 import com.datos.vfs.FileObject
-import com.distribuit.datos.helper.DatosHelper
-import com.distribuit.datos.models.{ DatosRequest, Failure, Success }
+import com.distribuit.datos.actor.helper.DatosHelper
+import com.distribuit.datos.message.{ DatosRequest, Failure, Success }
 import com.typesafe.scalalogging.Logger
 import org.slf4j.LoggerFactory
 

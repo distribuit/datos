@@ -1,4 +1,4 @@
-package com.distribuit.datos
+package com.distribuit.datos.actor
 
 import java.util.concurrent.TimeUnit
 
@@ -6,9 +6,11 @@ import akka.actor._
 import akka.pattern.ask
 import akka.util.Timeout
 import com.datos.vfs.FileObject
+import com.distribuit.datos.WorkerSchema
 import com.distribuit.datos.common._
 import com.distribuit.datos.compression.Compression
 import com.distribuit.datos.compression.Compression._
+import com.distribuit.datos.message._
 import com.distribuit.datos.models._
 import com.typesafe.scalalogging.Logger
 import org.slf4j.LoggerFactory

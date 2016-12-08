@@ -1,8 +1,8 @@
-package com.distribuit.datos.common
+package com.distribuit.datos.actor.helper
 
 import akka.actor.ActorSystem
 import akka.dispatch.{ PriorityGenerator, UnboundedPriorityMailbox }
-import com.distribuit.datos.models.ShutDown
+import com.distribuit.datos.message.ShutDown
 import com.typesafe.config.Config
 
 /**

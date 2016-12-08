@@ -1,7 +1,6 @@
-package com.distribuit.datos.models
+package com.distribuit.datos.message
 
 import com.datos.vfs.FileObject
-import com.distribuit.datos.common.OnCompletion
 import com.distribuit.datos.compression.Compression.Compression
 
 /**

@@ -1,8 +1,6 @@
 package com.distribuit.datos
 
-import com.distribuit.datos.common.OnCompletion
-import com.distribuit.datos.models.Candidate
-import com.distribuit.datos.models.Modtager
+import com.distribuit.datos.message.{ Candidate, Modtager, OnCompletion }
 
 /**
  * Copyright (c) 2016 Distribuit Inc.

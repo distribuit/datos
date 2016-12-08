@@ -4,9 +4,9 @@ import java.io.OutputStream
 import java.util.zip.{ ZipEntry, ZipInputStream }
 
 import com.datos.vfs.FileObject
+import com.distribuit.datos.actor.helper.DatosHelper
 import com.distribuit.datos.compression.Compression.Compression
-import com.distribuit.datos.helper.DatosHelper
-import com.distribuit.datos.models.Modtager
+import com.distribuit.datos.message.Modtager
 import com.typesafe.scalalogging.Logger
 import org.slf4j.LoggerFactory
 

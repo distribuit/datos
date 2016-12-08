@@ -1,4 +1,4 @@
-package com.distribuit.datos.common
+package com.distribuit.datos.models
 
 /**
  * Defines rules to transform a file name

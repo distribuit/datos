@@ -1,4 +1,4 @@
-package com.distribuit.datos.helper
+package com.distribuit.datos.actor.helper
 
 import java.io.{ BufferedInputStream, InputStream, OutputStream }
 
@@ -6,7 +6,7 @@ import com.datos.vfs.FileObject
 import com.distribuit.datos.common.DatosSettings
 import com.distribuit.datos.compression.Compression
 import com.distribuit.datos.compression.Compression.Compression
-import com.distribuit.datos.models.Modtager
+import com.distribuit.datos.message.Modtager
 import com.typesafe.scalalogging.Logger
 import org.slf4j.LoggerFactory
 

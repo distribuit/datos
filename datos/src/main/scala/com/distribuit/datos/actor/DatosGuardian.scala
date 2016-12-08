@@ -1,8 +1,9 @@
-package com.distribuit.datos
+package com.distribuit.datos.actor
 
 import akka.actor.{ Actor, ActorLogging, ActorRef, Props }
 import akka.routing.FromConfig
-import com.distribuit.datos.models.{ Running, ShutDown, ShuttingDown, Status }
+import com.distribuit.datos.WorkerSchema
+import com.distribuit.datos.message.{ Running, ShutDown, ShuttingDown, Status }
 
 import scala.collection.mutable
 

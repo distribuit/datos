@@ -1,4 +1,4 @@
-package com.distribuit.datos.models
+package com.distribuit.datos.message
 
 import com.distribuit.datos.compression.Compression.Compression
 

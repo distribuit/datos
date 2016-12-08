@@ -1,4 +1,4 @@
-package com.distribuit.datos.http.routes
+package com.distribuit.datos.http.route
 
 /**
  * Copyright (c) 2016 Distribuit Inc.

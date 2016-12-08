@@ -2,6 +2,7 @@ package com.distribuit.datos
 
 import akka.actor.{ ActorRef, ActorSystem, Props }
 import akka.stream.ActorMaterializer
+import com.distribuit.datos.actor.{ DatosGuardian, Worker }
 import com.distribuit.datos.common._
 import com.typesafe.scalalogging.Logger
 import org.slf4j.LoggerFactory

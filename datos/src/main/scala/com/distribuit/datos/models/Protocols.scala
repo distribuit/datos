@@ -1,4 +1,4 @@
-package com.distribuit.datos
+package com.distribuit.datos.models
 
 import spray.json.DefaultJsonProtocol
 

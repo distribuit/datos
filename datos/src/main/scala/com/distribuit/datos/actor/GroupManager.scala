@@ -1,8 +1,9 @@
-package com.distribuit.datos
+package com.distribuit.datos.actor
 
 import akka.actor._
+import com.distribuit.datos.WorkerSchema
 import com.distribuit.datos.common.DatosSettings
-import com.distribuit.datos.models.Refresh
+import com.distribuit.datos.message.Refresh
 import com.typesafe.scalalogging.Logger
 import org.slf4j.LoggerFactory
 

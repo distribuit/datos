@@ -1,9 +1,9 @@
-package com.distribuit.datos
+package com.distribuit.datos.actor
 
 import java.util.UUID
 
 import akka.actor.Actor
-import com.distribuit.datos.models.{ GenerateUniqueId, TransactionId }
+import com.distribuit.datos.message.{ GenerateUniqueId, TransactionId }
 import com.typesafe.scalalogging.Logger
 import org.slf4j.LoggerFactory
 

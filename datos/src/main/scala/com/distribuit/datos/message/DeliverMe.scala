@@ -1,6 +1,4 @@
-package com.distribuit.datos.models
-
-import com.distribuit.datos.common.OnCompletion
+package com.distribuit.datos.message
 
 /**
  * Copyright (c) 2016 Distribuit Inc.

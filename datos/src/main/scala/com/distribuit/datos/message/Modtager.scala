@@ -1,7 +1,7 @@
-package com.distribuit.datos.models
+package com.distribuit.datos.message
 
 import com.distribuit.datos.compression.Compression.Compression
-import com.distribuit.datos.common.FileNameTransformer
+import com.distribuit.datos.models.FileNameTransformer
 
 /**
  * Copyright (c) 2016 Distribuit Inc.

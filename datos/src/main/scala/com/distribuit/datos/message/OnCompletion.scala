@@ -1,4 +1,4 @@
-package com.distribuit.datos.common
+package com.distribuit.datos.message
 
 /**
  * Copyright (c) 2016 Distribuit Inc.

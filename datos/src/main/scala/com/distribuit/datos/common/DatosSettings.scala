@@ -11,7 +11,6 @@ import scala.io.Source
  */
 object DatosSettings {
   val config: Config = ConfigFactory.parseString(Source.fromFile("conf/application.conf").mkString)
-  val datosCount: Int = config.getInt("datos.count")
   val tempDirectory: String = "_staging"
   val fileManager: FileSystemManager = VFS.getManager
 }

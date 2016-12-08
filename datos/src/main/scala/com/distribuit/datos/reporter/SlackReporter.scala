@@ -23,9 +23,9 @@ class SlackReporter extends Reporter {
   override def reportError(event: String, message: String, cause: String): Unit = {
     report(
       s"```Event:$event\n" +
-      s"Type:Error\n" +
-      s"Message:$message\n" +
-      s"Cause:$cause",
+        s"Type:Error\n" +
+        s"Message:$message\n" +
+        s"Cause:$cause",
       errorEmoji
     )
   }
@@ -33,8 +33,8 @@ class SlackReporter extends Reporter {
   override def reportEvent(event: String, message: String): Unit = {
     report(
       s"```Event:$event\n" +
-      s"Type:Event\n" +
-      s"Message:$message\n",
+        s"Type:Event\n" +
+        s"Message:$message\n",
       errorEmoji
     )
   }

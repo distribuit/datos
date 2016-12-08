@@ -13,7 +13,7 @@ import scala.collection.mutable
  *         Manages all other actors in Datos system and accept and process requests from external user
  */
 class DatosGuardian(val groups: Map[String, mutable.Buffer[WorkerSchema]]) extends Actor with ActorLogging {
-  val datos: ActorRef = context.actorOf(Props[Datos].withRouter(FromConfig()).withDispatcher("akka.actor.dispatcher.dato"), name = "Dato")
+  val datos: ActorRef = context.actorOf(Props[Datos].withRouter(FromConfig()).withDispatcher("akka.actor.dispatcher.datos"), name = "Datos")
   val uniqueIdGenerator: ActorRef = context.actorOf(Props(new UniqueIdGenerator), "UniqueIdGenerator")
   var status: Status = Running
   val groupManagers: Map[String, ActorRef] = groups.map(

@@ -10,6 +10,8 @@ scalaVersion := "2.11.0"
 libraryDependencies ++= Seq(
   "com.datos" % "vfs" % "1.0",
   "com.typesafe" % "config" % "1.3.0",
+  "org.apache.httpcomponents" % "httpclient" % "4.5.2",
+  "org.apache.commons" % "commons-email" % "1.2",
   "com.typesafe.scala-logging" % "scala-logging_2.11" % "3.1.0",
   "org.slf4j" % "slf4j-log4j12" % "1.7.2",
   "org.slf4j" % "slf4j-api" % "1.7.2",

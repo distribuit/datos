@@ -46,7 +46,7 @@ object Controller extends App {
     groups.mapValues(workers => {
       val toBuffer: mutable.Buffer[Option[WorkerSchema]] = workers.map(schemaJson =>
         Try(Worker.createWorkerSchema(schemaJson)) match {
-          case Success(schema) => Some(schema)
+          case success: Success[WorkerSchema] => Some(success.value)
           case Failure(errorMessage) =>
             println(s"Cannot parse $schemaJson")
             logger.error(s"event:schema error encounter--message:Failed to parse group definition $schemaJson", errorMessage)

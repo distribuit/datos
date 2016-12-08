@@ -1,6 +1,6 @@
 package com.distribuit.datos
 
-import akka.actor.Actor
+import akka.actor.{ Actor, ActorLogging }
 import com.datos.vfs.FileObject
 import com.distribuit.datos.helper.DatosHelper
 import com.distribuit.datos.models.{ DatosRequest, Failure, Success }
@@ -15,7 +15,7 @@ import scala.util.Try
  * @author paulson.vincent
  *         Reads one file and transfers it to multiple output locations
  */
-class Datos extends Actor {
+class Datos extends Actor with ActorLogging {
   private val logger = Logger(LoggerFactory.getLogger(this.getClass))
 
   override def receive: Receive = {

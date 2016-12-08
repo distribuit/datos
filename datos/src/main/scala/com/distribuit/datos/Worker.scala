@@ -25,7 +25,7 @@ import scala.util.Try
  * @author paulson.vincent
  *         Manages specific type of files in a directory
  */
-class Worker(val workerSchema: WorkerSchema, val datos: ActorRef, val uniqueIdGenerator: ActorRef) extends Actor {
+class Worker(val workerSchema: WorkerSchema, val datos: ActorRef, val uniqueIdGenerator: ActorRef) extends Actor with ActorLogging {
 
   implicit val timeout = Timeout(15, TimeUnit.SECONDS)
 

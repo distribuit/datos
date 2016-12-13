@@ -1,16 +1,17 @@
 package com.distribuit.datos
 
-import akka.actor.{ ActorRef, Props }
+import akka.actor.{ActorRef, Props}
 import akka.stream.ActorMaterializer
-import com.distribuit.datos.actor.{ DatosGuardian, Worker }
+import com.distribuit.datos.actor.{DatosGuardian, Worker}
 import com.distribuit.datos.common._
+import com.distribuit.datos.message.WorkerSchema
 import com.typesafe.scalalogging.Logger
 import org.slf4j.LoggerFactory
-import play.api.libs.json.{ JsValue, Json }
+import play.api.libs.json.{JsValue, Json}
 
 import scala.collection.mutable
 import scala.io.Source
-import scala.util.{ Failure, Success, Try }
+import scala.util.{Failure, Success, Try}
 
 /**
  * Copyright (c) 2016 Distribuit Inc.

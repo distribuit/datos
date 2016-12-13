@@ -7,11 +7,10 @@ import akka.event.Logging
 import akka.pattern.ask
 import akka.util.Timeout
 import com.datos.vfs.FileObject
-import com.distribuit.datos.WorkerSchema
 import com.distribuit.datos.common._
 import com.distribuit.datos.compression.Compression
 import com.distribuit.datos.compression.Compression._
-import com.distribuit.datos.message._
+import com.distribuit.datos.message.{WorkerSchema, _}
 import com.distribuit.datos.models._
 import play.api.libs.json.JsValue
 

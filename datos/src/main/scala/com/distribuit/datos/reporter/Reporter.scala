@@ -1,6 +1,8 @@
 package com.distribuit.datos.reporter
 
-import akka.actor.Actor
+import akka.actor.{ Actor, ActorRef, Props }
+import akka.event.Logging
+import com.distribuit.datos.common.{ DatosServices, DatosSettings }
 import com.typesafe.scalalogging.Logger
 import org.slf4j.LoggerFactory
 
@@ -11,7 +13,7 @@ import org.slf4j.LoggerFactory
  */
 trait Reporter extends Actor {
 
-  private val logger = Logger(LoggerFactory.getLogger("Reporter"))
+  private val logger = Logging(context.system, this)
 
   def reportError(event: String, message: String, cause: String): Unit
 
@@ -27,27 +29,41 @@ trait Reporter extends Actor {
 object Reporter {
   private val logger = Logger(LoggerFactory.getLogger("Reporter"))
 
-  def getReporter(id: String): Reporter = {
+  private val IdentityReporter: String = "None"
+
+  private def getReporter(id: String): ActorRef = {
     id.contains(',') match {
       case true =>
-        new MultiReporter(id.split(',').toSet.map(buildReporter))
+        DatosServices.actorSystem.actorOf(Props(new MultiReporter(id.split(',').toSet.map(buildReporter))), "MultiReporter")
       case false =>
         buildReporter(id)
     }
-
   }
 
-  private def buildReporter(id: String): Reporter = {
+  private def buildReporter(id: String): ActorRef = {
     id match {
-      case "None" => Identity
+      case IdentityReporter => DatosServices.actorSystem.actorOf(Props(new Identity()), "Identity")
+      case "slack" => DatosServices.actorSystem.actorOf(Props(new SlackReporter()), "SlackReporter")
+      case "email" => DatosServices.actorSystem.actorOf(Props(new EmailReporter()), "EmailReporter")
       case _ =>
         logger.error(s"event: Invalid configuration--message:Invalid reporter configured, Will not report--reporter:$id")
-        Identity
+        DatosServices.actorSystem.actorOf(Props(new Identity()), "Identity")
     }
   }
+
+  def instance: ActorRef = {
+    DatosSettings.config.getBoolean("reporter.activate") match {
+      case true =>
+        getReporter(DatosSettings.config.getString("reporter.ids"))
+      case false =>
+        logger.info("event:No Reporter is configured")
+        getReporter(IdentityReporter)
+    }
+  }
+
 }
 
-object Identity extends Reporter {
+class Identity extends Reporter {
   override def reportError(event: String, message: String, cause: String): Unit = {
     //Do Nothing
   }
@@ -57,13 +73,13 @@ object Identity extends Reporter {
   }
 }
 
-class MultiReporter(reporters: Set[Reporter]) extends Reporter {
+class MultiReporter(reporters: Set[ActorRef]) extends Reporter {
 
-  override def reportError(event: String, message: String, cause: String): Unit = reporters.foreach(_.reportError(
+  override def reportError(event: String, message: String, cause: String): Unit = reporters.foreach(_ ! Error(
     event, message, cause
   ))
 
   override def reportEvent(event: String, message: String): Unit = reporters.foreach(
-    _.reportEvent(event, message)
+    _ ! (event, message)
   )
 }

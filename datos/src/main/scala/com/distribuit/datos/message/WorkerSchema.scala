@@ -1,6 +1,4 @@
-package com.distribuit.datos
-
-import com.distribuit.datos.message.{ Candidate, Modtager, OnCompletion }
+package com.distribuit.datos.message
 
 /**
  * Copyright (c) 2016 Distribuit Inc.

@@ -1,11 +1,9 @@
 package com.distribuit.datos.actor
 
 import akka.actor._
-import com.distribuit.datos.WorkerSchema
+import akka.event.Logging
 import com.distribuit.datos.common.DatosSettings
-import com.distribuit.datos.message.Refresh
-import com.typesafe.scalalogging.Logger
-import org.slf4j.LoggerFactory
+import com.distribuit.datos.message.{Refresh, WorkerSchema}
 
 import scala.collection.mutable
 import scala.concurrent.duration._
@@ -17,7 +15,7 @@ import scala.concurrent.duration._
  *         Manages a group of actors each of these listening to a directory
  */
 class GroupManager(workerDefinitions: mutable.Buffer[WorkerSchema], val datos: ActorRef, val uniqueIdGenerator: ActorRef) extends Actor with ActorLogging {
-  private val logger = Logger(LoggerFactory.getLogger(this.getClass))
+  private val logger = Logging(context.system, this)
 
   val workers: Map[String, ActorRef] = workerDefinitions.map(definitions => {
     definitions.name -> context.actorOf(Props(new Worker(definitions, datos, uniqueIdGenerator)).withDispatcher("akka.actor.dispatcher.datos"), definitions.name)

@@ -3,17 +3,15 @@ package com.distribuit.datos.actor
 import java.util.concurrent.TimeUnit
 
 import akka.actor._
+import akka.event.Logging
 import akka.pattern.ask
 import akka.util.Timeout
 import com.datos.vfs.FileObject
-import com.distribuit.datos.WorkerSchema
 import com.distribuit.datos.common._
 import com.distribuit.datos.compression.Compression
 import com.distribuit.datos.compression.Compression._
-import com.distribuit.datos.message._
+import com.distribuit.datos.message.{WorkerSchema, _}
 import com.distribuit.datos.models._
-import com.typesafe.scalalogging.Logger
-import org.slf4j.LoggerFactory
 import play.api.libs.json.JsValue
 
 import scala.collection.mutable
@@ -31,7 +29,7 @@ class Worker(val workerSchema: WorkerSchema, val datos: ActorRef, val uniqueIdGe
 
   implicit val timeout = Timeout(15, TimeUnit.SECONDS)
 
-  private val logger = Logger(LoggerFactory.getLogger(context.self.path.name))
+  private val logger = Logging(context.system, this)
 
   val candidates: ListBuffer[FileObject] = new ListBuffer[FileObject]
 

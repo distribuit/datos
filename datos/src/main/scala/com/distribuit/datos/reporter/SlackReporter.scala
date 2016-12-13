@@ -35,7 +35,7 @@ class SlackReporter extends Reporter {
       s"```Event:$event\n" +
         s"Type:Event\n" +
         s"Message:$message\n",
-      errorEmoji
+      eventFaceEmoji
     )
   }
 

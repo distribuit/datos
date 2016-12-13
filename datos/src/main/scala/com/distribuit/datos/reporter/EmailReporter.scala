@@ -2,7 +2,8 @@ package com.distribuit.datos.reporter
 
 import com.distribuit.datos.common.DatosSettings
 import org.apache.commons.mail.SimpleEmail
-import collection.JavaConverters._
+
+import scala.collection.JavaConverters._
 
 /**
  * Copyright (c) 2016 Distribuit Inc.

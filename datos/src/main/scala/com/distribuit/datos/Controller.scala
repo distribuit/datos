@@ -1,6 +1,6 @@
 package com.distribuit.datos
 
-import akka.actor.{ ActorRef, ActorSystem, Props }
+import akka.actor.{ ActorRef, Props }
 import akka.stream.ActorMaterializer
 import com.distribuit.datos.actor.{ DatosGuardian, Worker }
 import com.distribuit.datos.common._
@@ -18,10 +18,9 @@ import scala.util.{ Failure, Success, Try }
  * @author paulson.vincent
  */
 object Controller extends App {
-  implicit val actorSystem: ActorSystem = ActorSystem("DatosSystem", DatosSettings.config)
+  implicit val actorSystem = DatosServices.actorSystem
   implicit val materializer = ActorMaterializer()
-  implicit val executor = actorSystem.dispatcher
-  //  val logger = Logging(actorSystem, this)
+  implicit val executor = DatosServices.actorSystem.dispatcher
   private val logger = Logger(LoggerFactory.getLogger("Controller"))
   //  val bindingFuture = Http().bindAndHandle(null, DatosSettings.config.getString("http.interface"), DatosSettings.config.getInt("http.port"))
 
@@ -33,7 +32,7 @@ object Controller extends App {
           print("Exit")
         case false =>
           val groupDefinition: Map[String, mutable.Buffer[WorkerSchema]] = groupDefinitionOpt.mapValues(options => options.map(_.get))
-          val datosGuardian: ActorRef = actorSystem.actorOf(Props(new DatosGuardian(groupDefinition)), "DatosGuardian")
+          val datosGuardian: ActorRef = DatosServices.actorSystem.actorOf(Props(new DatosGuardian(groupDefinition)), "DatosGuardian")
       }
     case Failure(errorMessage) =>
       logger.error("event:schema error--msg: Failed to parse Worker.json", errorMessage)

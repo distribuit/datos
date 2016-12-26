@@ -3,7 +3,7 @@ package com.distribuit.datos.actor
 import akka.actor._
 import akka.event.Logging
 import com.distribuit.datos.common.DatosSettings
-import com.distribuit.datos.message.{Refresh, WorkerSchema}
+import com.distribuit.datos.message.{ Refresh, WorkerSchema }
 
 import scala.collection.mutable
 import scala.concurrent.duration._

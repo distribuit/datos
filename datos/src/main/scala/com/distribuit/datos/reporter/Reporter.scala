@@ -51,7 +51,7 @@ object Reporter {
     }
   }
 
-  def instance: ActorRef = {
+  val instance: ActorRef = {
     DatosSettings.config.getBoolean("reporter.activate") match {
       case true =>
         getReporter(DatosSettings.config.getString("reporter.ids"))

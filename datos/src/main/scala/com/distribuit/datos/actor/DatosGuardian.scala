@@ -1,6 +1,6 @@
 package com.distribuit.datos.actor
 
-import akka.actor.{Actor, ActorLogging, ActorRef, Props}
+import akka.actor.{ Actor, ActorLogging, ActorRef, Props }
 import akka.routing.FromConfig
 import com.distribuit.datos.message._
 

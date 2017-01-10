@@ -6,7 +6,7 @@ jars_found=0
 
 for entry in `ls ${search_dir}`; do
     version=`expr "$entry" | cut -d'-' -f 2`
-    if [[ "$entry" == *\.jar && "$version" =~ [0-9\.]+ ]]; then
+    if [[ "$entry" == *\assembly.jar && "$version" =~ [0-9\.]+ ]]; then
        DATOS_VERSION="$version"
        jars_found=$((jars_found+1))
        jars[jars_found]="$entry"

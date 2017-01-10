@@ -33,8 +33,7 @@ libraryDependencies ++= Seq(
   "org.apache.hadoop" % "hadoop-client" % "2.6.0",
   "org.apache.commons" % "commons-compress" % "1.12",
   "com.github.scala-incubator.io" % "scala-io-file_2.11" % "0.4.3",
-  "org.scala-lang.modules" % "scala-parser-combinators_2.11" % "1.0.1",
-  "com.softwaremill" %% "akka-http-session" % "0.1.4-2.0-M1"
+  "org.scala-lang.modules" % "scala-parser-combinators_2.11" % "1.0.1"
 )
 
 resolvers += Resolver.mavenLocal

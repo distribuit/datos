@@ -35,23 +35,32 @@ class Worker(val workerSchema: WorkerSchema, val datos: ActorRef, val uniqueIdGe
 
   val runningFiles: mutable.HashMap[String, FileObject] = new mutable.HashMap[String, FileObject]
 
+  private var status: Any = ShutDown
+
   override def receive: Receive = {
+    case Start => status = Start
+    case ShutDown => status = ShutDown
     case Refresh =>
-      candidates.isEmpty && runningFiles.isEmpty match {
-        case true =>
-          Try(refreshFileList()) match {
-            case scala.util.Failure(failureMessage) =>
-              logger.error(s"event:Failed to read from path--path:${workerSchema.candidate.path}" +
-                s"--cause:${failureMessage.toString}\n ${failureMessage.getStackTrace.mkString("\n")}")
-            case _ =>
-              logger.info(s"event:Refreshed worker--name:${workerSchema.name}")
-          }
-        case false =>
-          candidates.isEmpty match {
-            case true => //Do Nothing
+      status match {
+        case Start =>
+          candidates.isEmpty && runningFiles.isEmpty match {
+            case true =>
+              Try(refreshFileList()) match {
+                case scala.util.Failure(failureMessage) =>
+                  logger.error(s"event:Failed to read from path--path:${workerSchema.candidate.path}" +
+                    s"--cause:${failureMessage.toString}\n ${failureMessage.getStackTrace.mkString("\n")}")
+                case _ =>
+                  logger.info(s"event:Refreshed worker--name:${workerSchema.name}")
+              }
             case false =>
-              processNextFile()
+              candidates.isEmpty match {
+                case true => //Do Nothing
+                case false =>
+                  processNextFile()
+              }
           }
+        case _ =>
+        //Do Nothing
       }
     case Success(transactionId) =>
       runningFiles.remove(transactionId) match {

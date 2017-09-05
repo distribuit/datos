@@ -12,7 +12,7 @@ In modern enterprise application its quite common for many sub systems like real
 
 1. Clone this repository.
 
-2. Configure this file   [Workers.json] (https://github.com/distribuitech/datos/blob/develop/datos/settings/Workers.json)  
+2. Configure this file   [Workers.json](https://github.com/distribuitech/datos/blob/develop/datos/settings/Workers.json)  
        Notes: 
        * Path follows [common-vfs](http://commons.apache.org/proper/commons-vfs/filesystems.html) naming pattern  
        * Supported [compression](https://github.com/distribuitech/datos/blob/develop/datos/src/main/scala/com/distribuit/datos/compression/Compression.scala) formats are  GZIP,BZIP2,ZIP,XZ,DEFLATE and PACK200.  
